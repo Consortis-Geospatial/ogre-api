@@ -1,0 +1,61 @@
+# ---------- GET - /domains ----------
+get:
+  summary: |
+    List of filterded domains for selectors
+  description: |-
+    Returns a filtered list of domains.
+  tags: [domains]
+  security:
+    - bearerAuth: []
+  parameters:
+    - name: search
+      in: query
+      description: Description to filter by. Type at least 3 characters to search
+      required: true
+      schema:
+        type: string
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - id
+                    - description
+                    - active
+                    - version
+                  properties:
+                    id:
+                      type: integer
+                    description:
+                      type: string
+                      maxLength: 256
+                    active:
+                      type: boolean
+          example:
+            data:
+              - id: 13
+                description: Κατάσταση Πινακίδων
+                active: true
+              - id: 9
+                description: Κωδικοί πινακίδων
+                active: true
+              - id: 12
+                description: Μέγεθος Πινακίδων
+                active: true
+              - id: 10
+                description: Τύπος Πινακίδων
+                active: true
+    400:
+      $ref: '#/components/responses/BadRequestError'
+    401:
+      $ref: '#/components/responses/UnauthorizedError'
+    500:
+      $ref: '#/components/responses/ServerError'

@@ -1,0 +1,9 @@
+// https://code.visualstudio.com/docs/nodejs/working-with-javascript
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "target": "es2019", //"es5"
+    "moduleResolution": "node"
+  },
+  "exclude": ["node_modules", "**/node_modules/*"]
+}

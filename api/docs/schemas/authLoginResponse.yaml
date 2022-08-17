@@ -1,0 +1,167 @@
+title: AuthLoginResponse
+type: object
+required:
+  - id
+  - email
+  - region_id
+  - access_token
+  - refresh_token
+  - role
+properties:
+  id:
+    type: integer
+    description: 'User Id'
+  email:
+    type: string
+    maxLength: 50
+  region_id:
+    type: integer
+  access_token:
+    type: string
+    maxLength: 200
+  refresh_token:
+    type: string
+    maxLength: 200
+  role:
+    type: object
+    description: 'Role related information'
+    required:
+      - id
+      - name
+      - build_in_role
+      - role_module_permissions
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+        maxLength: 50
+      build_in_role:
+        type: string
+        maxLength: 20
+      role_module_permissions:
+        type: array
+        description: 'Defines the access for each module and the allowed actions to execute per module'
+        items:
+          type: object
+          required:
+            - id
+            - permission_id
+            - can_create
+            - can_read
+            - can_update
+            - can_delete
+            - permission
+          properties:
+            id:
+              type: integer
+            permission_id:
+              type: integer
+            can_create:
+              type: boolean
+            can_read:
+              type: boolean
+            can_update:
+              type: boolean
+            can_delete:
+              type: boolean
+            permission:
+              type: object
+              required:
+                - description
+                - type
+              properties:
+                description:
+                  type: string
+                  maxLength: 150
+                type:
+                  type: string
+                  maxLength: 15
+      role_page_permissions:
+        type: array
+        description: 'Defines the access for each page'
+        items:
+          type: object
+          required:
+            - id
+            - permission_id
+          properties:
+            id:
+              type: integer
+            permission_id:
+              type: integer
+            permission:
+              type: object
+              required:
+                - description
+                - type
+              properties:
+                description:
+                  type: string
+                  maxLength: 150
+                type:
+                  type: string
+                  maxLength: 15
+      role_action_permissions:
+        description: 'Defines if a specific action can be executed. Use this permission to disable on enable buttons on a page'
+        type: array
+        items:
+          type: object
+          required:
+            - id
+            - permission_id
+          properties:
+            id:
+              type: integer
+            permission_id:
+              type: integer
+            permission:
+              type: object
+              required:
+                - description
+                - type
+              properties:
+                description:
+                  type: string
+                  maxLength: 150
+                type:
+                  type: string
+                  maxLength: 15
+      role_event_type_permissions:
+        type: array
+        description: 'An array on the available event types that a user can create, read, update or delete'
+        items:
+          type: object
+          required:
+            - id
+            - event_type_id
+            - can_create
+            - can_read
+            - can_update
+            - can_delete
+            - permission
+          properties:
+            id:
+              type: integer
+            event_type_id:
+              type: integer
+            can_create:
+              type: boolean
+            can_read:
+              type: boolean
+            can_update:
+              type: boolean
+            can_delete:
+              type: boolean
+            permission:
+              type: object
+              required:
+                - description
+                - type
+              properties:
+                description:
+                  type: string
+                  maxLength: 150
+                type:
+                  type: string
+                  maxLength: 15

@@ -1,0 +1,15 @@
+npm install -g express-generator
+
+express --view=ejs
+
+npm install
+
+// package for postgres
+npm install --save pg-promise bluebird
+
+// for encryption. Visit https://www.npmjs.com/package/crypto-js for more informations
+npm install crypto-js
+
+// Package for create environment variables. Check https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786 
+npm install dotenv 
+

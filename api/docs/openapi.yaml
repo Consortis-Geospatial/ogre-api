@@ -1,0 +1,64 @@
+openapi: '3.0.1'
+info:
+  title: 'Mobiroad API'
+  version: '1.0.0'
+  description: |-
+    Mobiroad API based on the OpenAPI 3.0 specification.  You can find out more about
+    Swagger at [http://swagger.io](http://swagger.io). 
+
+    Some useful links:
+    - [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)
+    - [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)
+
+    **_Important Notice_**
+
+    For models that contain id and version fields, the following rules must be applied:
+      - On a new record, id must be equal to 0 and version equal to null
+      - On updating a record, the fields id and version must be filled with the values fetched by a previous GET request
+  contact:
+    name: 'Consortis'
+    url: 'https://consortis.gr/'
+    email: 'developer@consortis.gr'
+
+servers:
+  - url: 'http://localhost:{{port}}/api/v1'
+
+tags:
+  - name: auth
+    description: Access to Mobiroad API
+  - name: domains
+    description: List of values used in event types and events
+
+paths:
+  $ref: './api/docs/paths/_index.yaml'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    $ref: './api/docs/schemas/_index.yaml'
+  responses:
+    # 201
+    Created:
+      description: Entity created
+    # 204
+    Updated:
+      description: Entity updated. No Content
+    # 400
+    BadRequestError:
+      description: Bad request
+    # 401
+    UnauthorizedError:
+      description: Access token is missing or invalid
+    # 403
+    ForbiddenError:
+      description: Access to the resource is forbidden
+    # 404
+    NotFoundError:
+      description: Entity not found
+    # 500
+    ServerError:
+      description: Internal Server Error

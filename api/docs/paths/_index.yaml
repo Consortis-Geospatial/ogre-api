@@ -1,0 +1,13 @@
+# ---------- Auth ----------
+/auth/login:
+  $ref: 'auth/authLogin.yaml'
+
+# ---------- Domains ----------
+/domains:
+  $ref: 'domains/domains.yaml'
+/domains/{domainId}:
+  $ref: 'domains/domainsById.yaml'
+/domains/{domainId}/version/{version}:
+  $ref: 'domains/domainsDelete.yaml'
+/domains/selector:
+  $ref: 'domains/domainsSelector.yaml'

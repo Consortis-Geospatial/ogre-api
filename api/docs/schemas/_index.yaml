@@ -1,0 +1,30 @@
+# ---------- Common models ----------
+BasicModel:
+  $ref: 'basicModel.yaml'
+
+# ---------- Auth ----------
+AuthLoginRequest:
+  $ref: 'authLoginRequest.yaml'
+
+AuthLoginResponse:
+  $ref: 'authLoginResponse.yaml'
+
+# ---------- Domains ----------
+DomainListModel:
+  $ref: 'domainListModel.yaml'
+
+DomainModel:
+  $ref: 'domainModel.yaml'
+
+DomainValueModel:
+  $ref: 'domainValueModel.yaml'
+# AuthLoginRequest:
+#   $ref: './api/docs/schemas/authLogin.yaml#/AuthLoginRequest'
+
+# AuthLoginResponse:
+#   $ref: './api/docs/schemas/authLogin.yaml#/AuthLoginResponse'
+# AuthLoginRequest:
+#   $ref: 'authLogin.yaml#/AuthLoginRequest'
+
+# AuthLoginResponse:
+#   $ref: 'authLogin.yaml#/AuthLoginResponse'

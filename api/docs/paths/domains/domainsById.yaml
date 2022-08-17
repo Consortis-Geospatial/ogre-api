@@ -1,0 +1,120 @@
+# ---------- GET - /domains/{domainId} ----------
+get:
+  summary: |
+    Find domain by id
+  description: |-
+    Returns a single domain
+  tags: [domains]
+  security:
+    - bearerAuth: []
+  parameters:
+    - name: domainId
+      in: path
+      description: Id of the domain to return
+      required: true
+      schema:
+        type: integer
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/components/schemas/DomainModel'
+          example:
+            data:
+              data:
+                id: 12
+                description: Μέγεθος Πινακίδων
+                is_system_value: false
+                active: true
+                created_at: '2020-01-18T14:26:26.000Z'
+                created_by: 1
+                updated_at: '2021-05-06T12:52:01.000Z'
+                updated_by: 22
+                version: 1
+                domain_values:
+                  - id: 38
+                    description: Μεγάλο
+                    order: 1
+                    active: true
+                    created_at: '2020-01-18T14:33:45.000Z'
+                    created_by: 1
+                    updated_at: '2021-05-06T12:52:01.000Z'
+                    updated_by: 22
+                    version: 5
+                  - id: 37
+                    description: Μικρό
+                    order: 2
+                    active: true
+                    created_at: '2020-01-18T14:33:45.000Z'
+                    created_by: 1
+                    updated_at: '2021-05-06T12:31:13.000Z'
+                    updated_by: 22
+                    version: 1
+    400:
+      $ref: '#/components/responses/BadRequestError'
+    401:
+      $ref: '#/components/responses/UnauthorizedError'
+    403:
+      $ref: '#/components/responses/ForbiddenError'
+    404:
+      $ref: '#/components/responses/NotFoundError'
+    500:
+      $ref: '#/components/responses/ServerError'
+
+# ---------- PUT - /domains/{domainId} ----------
+put:
+  summary: |
+    Update an existing domain
+  description: |-
+    Update an existing domain by id
+  tags: [domains]
+  security:
+    - bearerAuth: []
+  parameters:
+    - name: domainId
+      in: path
+      description: Id of domain that needs to be updated
+      required: true
+      schema:
+        type: integer
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/DomainModel'
+        example:
+          id: 12
+          description: Μέγεθος Πινακίδων
+          is_system_value: false
+          active: true
+          version: 1
+          domain_values:
+            - id: 38
+              description: Μεγάλο
+              order: 1
+              active: true
+              version: 1
+            - id: 37
+              description: Μικρό
+              order: 2
+              active: true
+              version: 1
+  responses:
+    204:
+      $ref: '#/components/responses/Updated'
+    400:
+      $ref: '#/components/responses/BadRequestError'
+    401:
+      $ref: '#/components/responses/UnauthorizedError'
+    403:
+      $ref: '#/components/responses/ForbiddenError'
+    404:
+      $ref: '#/components/responses/NotFoundError'
+    500:
+      $ref: '#/components/responses/ServerError'

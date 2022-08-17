@@ -1,0 +1,31 @@
+title: AuthLoginRequest
+type: object
+required:
+  - email
+  - password
+  - platform
+  - region_id
+  - uuid
+properties:
+  email:
+    type: string
+    maxLength: 50
+  password:
+    type: string
+    maxLength: 100
+  platform:
+    type: string
+    maxLength: 30
+    description: "The device platform (lowercase). Available values 'ios' | 'android' | 'electron' | 'web'"
+  region_id:
+    type: integer
+  uuid:
+    type: string
+    maxLength: 30
+    description: Unique id of the device
+example:
+  email: andreas.kavlitsis@gmail.com
+  password: '!123456Ak'
+  platform: web
+  region_id: 1
+  uuid: 27fb663f-dcd7-43b8-9f4f-ef7aa72fbc83

@@ -1,0 +1,20 @@
+title: DomainModel
+allOf:
+  - type: object
+    required:
+      - id
+      - description
+      - active
+    properties:
+      id:
+        type: integer
+      description:
+        type: string
+        maxLength: 256
+      active:
+        type: boolean
+      domain_values:
+        type: array
+        items:
+          $ref: '#/components/schemas/DomainValueModel'
+  - $ref: '#/components/schemas/BasicModel'

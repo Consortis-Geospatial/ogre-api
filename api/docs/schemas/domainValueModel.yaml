@@ -1,0 +1,19 @@
+title: DomainValueModel
+allOf:
+  - type: object
+    required:
+      - id
+      - description
+      - active
+      - order
+    properties:
+      id:
+        type: integer
+      description:
+        type: string
+        maxLength: 256
+      order:
+        type: integer
+      active:
+        type: boolean
+  - $ref: '#/components/schemas/BasicModel'

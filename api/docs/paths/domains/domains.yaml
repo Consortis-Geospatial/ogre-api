@@ -1,0 +1,81 @@
+# ---------- GET - /domains ----------
+get:
+  summary: |
+    List of domains
+  description: |-
+    Returns a list of all available domains
+  tags: [domains]
+  security:
+    - bearerAuth: []
+  parameters:
+    - name: description
+      in: query
+      description: Description to filter by
+      required: false
+      schema:
+        type: string
+  responses:
+    200:
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DomainListModel'
+    400:
+      $ref: '#/components/responses/BadRequestError'
+    401:
+      $ref: '#/components/responses/UnauthorizedError'
+    403:
+      $ref: '#/components/responses/ForbiddenError'
+    404:
+      $ref: '#/components/responses/NotFoundError'
+    500:
+      $ref: '#/components/responses/ServerError'
+
+# ---------- POST - /domains ----------
+post:
+  summary: |
+    Add a new domain
+  description: |-
+    Add a new domain
+  tags: [domains]
+  security:
+    - bearerAuth: []
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/DomainModel'
+        example:
+          id: 0
+          description: Βλάβες Οδικού δικτύου (Demo)
+          active: true
+          domain_values:
+            - id: 0
+              description: Ρηγμάτωση οδοστρώματος
+              order: 1
+              active: true
+              version:
+            - id: 0
+              description: Βλάβη στηθαίου
+              order: 2
+              active: true
+              version:
+          version:
+  responses:
+    201:
+      $ref: '#/components/responses/Created'
+    400:
+      $ref: '#/components/responses/BadRequestError'
+    401:
+      $ref: '#/components/responses/UnauthorizedError'
+    403:
+      $ref: '#/components/responses/ForbiddenError'
+    500:
+      $ref: '#/components/responses/ServerError'

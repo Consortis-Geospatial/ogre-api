@@ -1,0 +1,23 @@
+post:
+  summary: |
+    Login user
+  description: Returns access token, refresh token and the role of the user with all available permissions **(modules, pages, actions and event types)**
+  tags: [auth]
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '#/components/schemas/AuthLoginRequest'
+  responses:
+    '200':
+      description: Successful operation
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: '#/components/schemas/AuthLoginResponse'
+    '500':
+      $ref: '#/components/responses/ServerError'

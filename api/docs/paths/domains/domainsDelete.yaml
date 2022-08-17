@@ -1,0 +1,35 @@
+# ---------- DELETE - /domains/{domainId}/version/{version} ----------
+delete:
+  summary: |
+    Delete a domain
+  description: |-
+    Delete a domain
+  tags: [domains]
+  security:
+    - bearerAuth: []
+  parameters:
+    - name: domainId
+      in: path
+      description: Domain Id to delete
+      required: true
+      schema:
+        type: integer
+    - name: version
+      in: path
+      description: Domain version to delete
+      required: true
+      schema:
+        type: integer
+  responses:
+    200:
+      description: Successful operation
+    400:
+      $ref: '#/components/responses/BadRequestError'
+    401:
+      $ref: '#/components/responses/UnauthorizedError'
+    403:
+      $ref: '#/components/responses/ForbiddenError'
+    404:
+      $ref: '#/components/responses/NotFoundError'
+    500:
+      $ref: '#/components/responses/ServerError'
