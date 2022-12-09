@@ -243,6 +243,9 @@ const ConvertService = {
     let ogrOptions = {
       format: format ? format : 'ESRI Shapefile',
     };
+    if (format == null || format == undefined) {
+      format = 'ESRI Shapefile';
+    }
 
     if (forceUTF8) {
       ogrOptions['options'] = ['-lco', 'ENCODING=UTF-8'];
@@ -266,7 +269,26 @@ const ConvertService = {
           res.end();
         }
       });
-    } else {
+    } else if (format === 'DXF') {
+      //ARTAXANIDIS
+      const dxfName = uuidv4();
+      fs.writeFileSync(tempFile + '/' + dxfName + '.geojson', json);
+      ogrOptions['destination'] = tempFile + '/' + dxfName + '.dxf';
+      let data = await ogr2ogr(tempFile + '/' + dxfName + '.geojson', ogrOptions);
+      console.log(data);
+      res.download(tempFile + '/' + dxfName + '.dxf', dxfName + '.dxf', options, function (err) {
+        if (err) {
+          fs.removeSync(tempFile + '/' + dxfName + '.dxf');
+          fs.removeSync(tempFile + '/' + dxfName + '.geojson');
+          res.end();
+        } else {
+          fs.removeSync(tempFile + '/' + dxfName + '.dxf');
+          fs.removeSync(tempFile + '/' + dxfName + '.geojson');
+          res.end();
+        }
+      });
+    } else if (format === 'ESRI Shapefile') {
+      //SHAPEFILE
       const shpName = uuidv4();
       ogrOptions['destination'] = tempFile + '/' + shpName;
       fs.writeFileSync(tempFile + '/' + shpName + '.geojson', json);

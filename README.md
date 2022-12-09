@@ -21,17 +21,17 @@ setx PROJ_LIB "C:\OSGeo4W\share\proj"
 **convertJson**
 convertJson : POST - e.g. localhost:3100/api/v1/convertJson
 
-Converts shapefile(zip), kml, kmz, dxf to geojson
+Converts geojson to shapefile(zip), csv or dxf
 
 PARAMETERS
-json - text of the GeoJSON file
-forceUTF8 (optional) - force utf-8
-format (optional) - File format supported
+json - text of the GeoJSON file forceUTF8 (optional)
+forceUTF8(optional) - boolean true/false
+format (optional) - File format supported, CSV or DXF, leave blank for shapefile
 
 **convert**
 convert : POST - e.g. localhost:3100/api/v1/convert
 
-Converts geojson to shapefile(zip)
+Converts shapefile(zip), kml, kmz, dxf to geojson
 
 PARAMETERS
 upload - the file being uploaded
