@@ -270,7 +270,6 @@ const ConvertService = {
         }
       });
     } else if (format === 'DXF') {
-      //ARTAXANIDIS
       const dxfName = uuidv4();
       fs.writeFileSync(tempFile + '/' + dxfName + '.geojson', json);
       ogrOptions['destination'] = tempFile + '/' + dxfName + '.dxf';
